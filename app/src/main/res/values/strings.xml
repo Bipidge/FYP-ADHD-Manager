@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">FYP</string>
+
+    <!-- Bottom Navigation Menu Titles -->
+    <string name="menu_todos">To-do\'s</string>
+    <string name="menu_clock">Clock</string>
+    <string name="menu_quests">Quests</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Placeholder Fragment Titles -->
+    <string name="title_todos">To-do List</string>
+    <string name="title_clock">Pomodoro Clock</string>
+    <string name="title_quests">Quests</string>
+    <string name="title_settings">App Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="add_new_task">Add new task</string>
+
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_new_task">New Task</string>
+    <string name="dialog_create">Create</string>
+    <string name="hint_task_title">Task Title</string>
+    <string name="hint_task_notes">Notes</string>
+    <string name="button_subtasks">Subtasks</string>
+    <string name="hint_subtask">Enter subtask</string>
+    <string name="subtask_remove">Remove</string>
+
+    <!-- Clock Fragment Strings -->
+    <string name="config_study_timer">Study Timer Setup</string>
+    <string name="config_break_timer">Break Timer Setup</string>
+    <string name="config_cycles">Cycles Setup</string>
+    <string name="config_duration">Duration:</string>
+    <string name="config_time_hours">h</string>
+    <string name="config_time_minutes">m</string>
+    <string name="config_time_seconds">s</string>
+    <string name="config_study_label">Study Phase Label</string>
+    <string name="config_break_label">Break Phase Label</string>
+    <string name="default_study_label">Study Time</string>
+    <string name="default_break_label">Break Time</string>
+    <string name="config_number_of_cycles">Number of Cycles:</string>
+    <string name="button_start">Start Pomodoro</string>
+    <string name="button_stop">Stop</string>
+    <string name="label_select_sound">Select Sound</string>
+
+    <!-- Navigation Buttons -->
+    <string name="button_next">Next</string>
+    <string name="button_back">Back</string>
+    <string name="button_done_start">Done &amp; Start</string>
+
+    <!-- Settings Fragment Strings -->
+    <string name="setting_title_account">My Account</string>
+    <string name="setting_title_daily_reminder">Daily Reminder</string>
+    <string name="setting_title_reminder_time">Reminder Time</string>
+    <string name="setting_title_language">Language</string>
+    <string name="setting_title_themes">Themes</string>
+    <string name="setting_reminder_time_default">Not set</string>
+    <string name="setting_nav_placeholder_toast">Navigation not yet implemented</string>
+
+</resources>

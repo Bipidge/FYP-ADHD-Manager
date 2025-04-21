@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false"> <!-- Loop happy animation briefly -->
+    <item android:drawable="@drawable/pet_sleep_1" android:duration="250" />
+    <item android:drawable="@drawable/pet_sleep_2" android:duration="250" />
+    <item android:drawable="@drawable/pet_sleep_3" android:duration="250" />
+    <item android:drawable="@drawable/pet_sleep_4" android:duration="250" />
+    <item android:drawable="@drawable/pet_sleep_5" android:duration="250" />
+    <item android:drawable="@drawable/pet_sleep_6" android:duration="250" />
+    <item android:drawable="@drawable/pet_sleep_7" android:duration="250" />
+    <item android:drawable="@drawable/pet_sleep_8" android:duration="250" />
+</animation-list>

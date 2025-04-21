@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="4dp">
+
+    <EditText
+        android:id="@+id/edit_text_dialog_subtask_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/button_dialog_remove_subtask"
+        android:hint="@string/hint_subtask"
+        android:inputType="textCapSentences"
+        android:maxLines="1"
+        android:layout_marginEnd="8dp"
+        android:layout_centerVertical="true"/>
+
+    <Button
+        android:id="@+id/button_dialog_remove_subtask"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:minWidth="48dp"
+        android:text="@string/subtask_remove" /> <!-- Or use an icon -->
+
+</RelativeLayout>

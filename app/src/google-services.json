@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "138426787283",
+    "project_id": "fyp-adhd-manager",
+    "storage_bucket": "fyp-adhd-manager.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138426787283:android:61b5c5b11baa8d3d62fb26",
+        "android_client_info": {
+          "package_name": "com.example.fyp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138426787283-ml1jqri9np3naie09q7dt58fh1ldpg64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fyp",
+            "certificate_hash": "ff6447fef49160b030d4b1d1e45d174574340b24"
+          }
+        },
+        {
+          "client_id": "138426787283-0q8ed2eqvbl6h43bjvh0uvdhs0p67i3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1fmJtWmxzQ-_HFe_90dgM4q7pkwpTPaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138426787283-0q8ed2eqvbl6h43bjvh0uvdhs0p67i3v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

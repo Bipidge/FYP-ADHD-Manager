@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkbox_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/text_view_task_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/checkbox_task"
+            android:layout_toStartOf="@+id/image_view_expand_collapse"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Task Title Example" />
+
+        <!-- Simple indicator for expand/collapse -->
+        <ImageView
+            android:id="@+id/image_view_expand_collapse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_down" /> <!-- Placeholder: Create this drawable -->
+
+    </RelativeLayout>
+
+    <!-- Container for subtasks, initially hidden -->
+    <LinearLayout
+        android:id="@+id/layout_subtasks_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+        <!-- Subtasks will be added here programmatically -->
+    </LinearLayout>
+
+</LinearLayout>

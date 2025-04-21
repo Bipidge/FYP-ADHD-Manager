@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_quests_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.quests.QuestsFragment">
+
+    <!-- Focus Points Display -->
+    <TextView
+        android:id="@+id/text_view_focus_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="FP: 10" />
+
+    <!-- Pet Area -->
+    <ImageView
+        android:id="@+id/image_view_pet"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        tools:src="@drawable/pet_idle_1" /> <!-- Make sure you have this drawable -->
+
+    <!-- Unlock Progress -->
+    <TextView
+        android:id="@+id/text_view_unlock_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@id/progress_bar_unlock"
+        app:layout_constraintStart_toStartOf="@id/progress_bar_unlock"
+        tools:text="Next Pet:" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_unlock"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_unlock_progress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:max="5"
+        tools:progress="3" />
+
+    <TextView
+        android:id="@+id/text_view_unlock_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="3 / 5 Pomodoros" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
