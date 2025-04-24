@@ -61,7 +61,7 @@ public class SettingsFragment extends Fragment {
     private static final String RANDOM_REMINDER_WORK_TAG = "random_reminder_work";
 
     // --- UI Elements ---
-    private RelativeLayout accountRow, reminderTimeRow, /*languageRow,*/ themesRow, logoutRow; // languageRow removed
+    private RelativeLayout accountRow, reminderTimeRow, logoutRow;
     private SwitchMaterial reminderSwitch;
     private TextView reminderTimeTextView;
 
@@ -110,8 +110,6 @@ public class SettingsFragment extends Fragment {
         reminderSwitch = view.findViewById(R.id.switch_daily_reminder);
         reminderTimeRow = view.findViewById(R.id.setting_row_reminder_time);
         reminderTimeTextView = view.findViewById(R.id.text_view_reminder_time);
-        // languageRow = view.findViewById(R.id.setting_row_language); // Removed
-        themesRow = view.findViewById(R.id.setting_row_themes);
         logoutRow = view.findViewById(R.id.setting_row_logout);
     }
 
@@ -164,21 +162,8 @@ public class SettingsFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), AccountActivity.class);
                 startActivity(intent);
             }
-            // --- Removed languageRow handling ---
-            else {
-                String text = "";
-                if (id == R.id.setting_row_themes) {
-                    text = getString(R.string.setting_title_themes);
-                }
-                if (!text.isEmpty()) {
-                    Toast.makeText(getContext(), text + ": " + getString(R.string.setting_nav_placeholder_toast), Toast.LENGTH_SHORT).show();
-                }
-            }
         };
         accountRow.setOnClickListener(placeholderClickListener);
-        // languageRow.setOnClickListener(placeholderClickListener); // Removed
-        themesRow.setOnClickListener(placeholderClickListener);
-
         // Logout Listener
         logoutRow.setOnClickListener(v -> logoutUser());
     }

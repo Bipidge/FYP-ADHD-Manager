@@ -50,8 +50,6 @@
     <string name="setting_title_account">My Account</string>
     <string name="setting_title_daily_reminder">Daily Reminder</string>
     <string name="setting_title_reminder_time">Reminder Time</string>
-    <!-- <string name="setting_title_language">Language</string> REMOVED -->
-    <string name="setting_title_themes">Themes</string>
     <string name="setting_reminder_time_default">Not set</string>
     <string name="setting_nav_placeholder_toast">Navigation not yet implemented</string>
 

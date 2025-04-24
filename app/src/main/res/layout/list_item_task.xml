@@ -2,50 +2,83 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp"
+    android:paddingBottom="8dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- CheckBox: Constrained to Start and centered vertically -->
         <CheckBox
             android:id="@+id/checkbox_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="8dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_task_title" />
+        <!-- Constrain bottom to title's *baseline* parent -->
 
-        <TextView
-            android:id="@+id/text_view_task_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/checkbox_task"
-            android:layout_toStartOf="@+id/image_view_expand_collapse"
-            android:layout_centerVertical="true"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="Task Title Example" />
-
-        <!-- Simple indicator for expand/collapse -->
+        <!-- Expand/Collapse Indicator: Constrained to End and centered vertically -->
         <ImageView
             android:id="@+id/image_view_expand_collapse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
             android:padding="8dp"
-            android:src="@drawable/ic_arrow_down" /> <!-- Placeholder: Create this drawable -->
+            android:src="@drawable/ic_arrow_down"
+            android:contentDescription="Expand/Collapse Subtasks"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <!-- Center relative to parent -->
 
-    </RelativeLayout>
 
-    <!-- Container for subtasks, initially hidden -->
+        <!-- Title TextView: Aligned with CheckBox baseline -->
+        <TextView
+            android:id="@+id/text_view_task_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toEndOf="@id/checkbox_task"
+            app:layout_constraintEnd_toStartOf="@+id/image_view_expand_collapse"
+            app:layout_constraintBaseline_toBaselineOf="@+id/checkbox_task"
+            tools:text="Task Title Example" />
+
+        <!-- Notes TextView: Below Title -->
+        <TextView
+            android:id="@+id/text_view_task_notes_preview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginTop="2dp"
+            android:visibility="gone"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/text_view_task_title"
+            app:layout_constraintStart_toStartOf="@id/text_view_task_title"
+            app:layout_constraintEnd_toEndOf="@id/text_view_task_title"
+            tools:visibility="visible"
+            tools:text="Notes preview..." />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Subtasks Container -->
     <LinearLayout
         android:id="@+id/layout_subtasks_container"
         android:layout_width="match_parent"
@@ -55,7 +88,6 @@
         android:layout_marginTop="8dp"
         android:visibility="gone"
         tools:visibility="visible">
-        <!-- Subtasks will be added here programmatically -->
     </LinearLayout>
 
 </LinearLayout>
