@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="16dp">
+
+    <!-- Task Title -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_editable_title"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Task Title"
+        android:layout_marginBottom="4dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_editable_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Task Notes -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_editable_notes"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Notes (Optional)"
+        android:layout_marginBottom="8dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_editable_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine|textCapSentences"
+            android:minLines="1"
+            android:gravity="top"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Subtasks Area -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subtasks:"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"/>
+
+    <LinearLayout
+        android:id="@+id/container_editable_subtasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"/>
+
+    <!-- Add Subtask Button for THIS task -->
+    <Button
+        android:id="@+id/button_add_editable_subtask"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="+ Add Subtask"
+        android:layout_marginTop="4dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>

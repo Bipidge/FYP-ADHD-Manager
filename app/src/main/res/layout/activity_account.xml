@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".auth.AccountActivity">
+
+    <!-- Use Material App Bar Layout and Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="?attr/actionBarTheme"> <!-- Use appropriate theme attribute -->
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/account_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="Account Center"
+            app:titleTextColor="@android:color/white"
+            app:popupTheme="?attr/actionBarPopupTheme" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Rest of the content inside another LinearLayout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Display Name Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Display Name"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:layout_marginBottom="4dp"/>
+
+        <RelativeLayout
+            android:id="@+id/layout_display_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_rounded_box"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/text_view_display_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/button_edit_display_name"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                tools:text="My User Name" />
+
+            <ImageButton
+                android:id="@+id/button_edit_display_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_edit"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:contentDescription="Edit Display Name" />
+        </RelativeLayout>
+
+        <!-- Account Info Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account Information"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:layout_marginBottom="4dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/background_rounded_box"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/text_view_uid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:layout_marginBottom="4dp"
+                tools:text="UID: abc123xyz..." />
+
+            <TextView
+                android:id="@+id/text_view_provider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                tools:text="Account provider: Firebase" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

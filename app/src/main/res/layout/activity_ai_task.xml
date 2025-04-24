@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.ai.AiTaskActivity">
 
+    <!-- Chat History Area -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view_chat"
         android:layout_width="0dp"
@@ -17,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- TextView inside -->
         <TextView
             android:id="@+id/text_view_chat_history"
             android:layout_width="match_parent"
@@ -25,9 +27,153 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:lineSpacingMultiplier="1.2"
             tools:text="AI: Hello! What tasks...\n\nUser: I need to clean...\n\nAI: Okay, breaking that down..." />
-
     </androidx.core.widget.NestedScrollView>
 
+    <!-- Task Review Area (Read-only display) -->
+    <LinearLayout
+        android:id="@+id/layout_review_tasks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:padding="16dp"
+        android:background="?android:colorBackground"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_confirmation_buttons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="gone">
+
+        <!-- Title TextView -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suggested Tasks (Review):"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:layout_marginBottom="8dp"/>
+        <!-- RecyclerView for review -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_proposed_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/list_item_proposed_task"/>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scroll_view_edit_tasks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:paddingBottom="?attr/actionBarSize"
+        android:clipToPadding="false"
+        android:background="?android:colorBackground"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Suggested Tasks:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Container where editable tasks will be added -->
+            <LinearLayout
+                android:id="@+id/container_editable_tasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <!-- Confirmation Buttons (Discard/Edit/Confirm) -->
+    <LinearLayout
+        android:id="@+id/layout_confirmation_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="gone">
+
+        <Button
+            android:id="@+id/button_discard_ai_tasks"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Discard"
+            android:layout_marginEnd="4dp"/>
+
+        <!-- Edit Button -->
+        <Button
+            android:id="@+id/button_edit_ai_tasks"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Edit"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/button_confirm_ai_tasks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Confirm &amp; Add"
+            android:layout_marginStart="4dp"/>
+
+    </LinearLayout>
+
+    <!-- Edit Action Buttons -->
+    <LinearLayout
+        android:id="@+id/layout_edit_actions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible">
+
+        <Button
+            android:id="@+id/button_cancel_edit"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel Edit"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/button_save_changes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Save Changes"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+
+    <!-- Progress Bar -->
     <ProgressBar
         android:id="@+id/progress_bar_ai"
         style="?android:attr/progressBarStyle"
@@ -37,10 +183,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="visible"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
+    <!-- Chat Input Area -->
     <LinearLayout
         android:id="@+id/layout_input"
         android:layout_width="0dp"
@@ -52,6 +198,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- EditText and Send Button inside -->
         <EditText
             android:id="@+id/edit_text_user_input"
             android:layout_width="0dp"
@@ -67,7 +214,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Send"/>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

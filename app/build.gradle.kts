@@ -85,4 +85,9 @@ dependencies {
 
     // Volley for network requests
     implementation("com.android.volley:volley:1.2.1")
+
+    implementation("com.github.prolificinteractive:material-calendarview:2.0.1")
+    implementation(libs.material)
+
+    implementation("androidx.work:work-runtime:2.9.0")
 }

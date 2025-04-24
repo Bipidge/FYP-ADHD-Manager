@@ -24,6 +24,8 @@ import com.example.fyp.ui.clock.ClockFragment;
 import com.example.fyp.ui.quests.QuestsFragment;
 import com.example.fyp.ui.settings.SettingsFragment;
 
+import com.example.fyp.utils.NotificationHelper;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        NotificationHelper.createNotificationChannels(this);
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);

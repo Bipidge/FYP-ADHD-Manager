@@ -29,7 +29,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         void onTaskCheckedChange(int position, boolean isChecked);
         void onSubtaskCheckedChange(int taskPosition, int subtaskPosition, boolean isChecked);
         void onTaskExpansionChange(int position, boolean isExpanded);
-        // Add methods for delete, edit if needed later
+        void onTaskLongPressed(Task task);
     }
     // --- End Interface ---
 
@@ -190,6 +190,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                     subtasksContainer.addView(subtaskView);
                 }
             }
+            itemView.setOnLongClickListener(v -> {
+                if (listener != null) {
+                    listener.onTaskLongPressed(task); // Pass the specific task object
+                    return true; // Indicate the long click was handled
+                }
+                return false;
+            });
         }
 
         // Helper to apply or remove strike-through text style

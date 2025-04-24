@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FYP</string>
+    <string name="app_name">ADHD Manager</string>
 
     <!-- Bottom Navigation Menu Titles -->
     <string name="menu_todos">To-do\'s</string>
@@ -16,6 +16,7 @@
 
     <string name="add_new_task">Add new task</string>
 
+    <!-- Dialog Strings -->
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_new_task">New Task</string>
     <string name="dialog_create">Create</string>
@@ -41,8 +42,6 @@
     <string name="button_start">Start Pomodoro</string>
     <string name="button_stop">Stop</string>
     <string name="label_select_sound">Select Sound</string>
-
-    <!-- Navigation Buttons -->
     <string name="button_next">Next</string>
     <string name="button_back">Back</string>
     <string name="button_done_start">Done &amp; Start</string>
@@ -51,7 +50,7 @@
     <string name="setting_title_account">My Account</string>
     <string name="setting_title_daily_reminder">Daily Reminder</string>
     <string name="setting_title_reminder_time">Reminder Time</string>
-    <string name="setting_title_language">Language</string>
+    <!-- <string name="setting_title_language">Language</string> REMOVED -->
     <string name="setting_title_themes">Themes</string>
     <string name="setting_reminder_time_default">Not set</string>
     <string name="setting_nav_placeholder_toast">Navigation not yet implemented</string>

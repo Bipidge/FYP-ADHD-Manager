@@ -1,316 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:orientation="vertical"
     tools:context=".ui.clock.ClockFragment">
 
-    <FrameLayout
-        android:id="@+id/config_steps_container"
-        android:layout_width="0dp"
+    <!-- Calendar View (Stays at the top) -->
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="?attr/colorPrimary"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- *** NEW: ScrollView containing everything below calendar *** -->
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="visible">
+        android:layout_weight="1"
+        android:fillViewport="true"> <!-- Important for nested content height -->
 
-        <!-- Step 1: Study Timer Configuration -->
+        <!-- *** NEW: LinearLayout inside ScrollView to stack content *** -->
         <LinearLayout
-            android:id="@+id/layout_config_study"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:visibility="visible">
-
-        <TextView
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/config_study_timer"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/config_duration"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="4dp"/>
+            <!-- Pomodoro Content Area (No longer takes full height, just wraps content) -->
+            <FrameLayout
+                android:id="@+id/pomodoro_content_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
 
+            <!-- === Configuration Steps Container === -->
+            <FrameLayout
+                android:id="@+id/config_steps_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="16dp"
+                android:visibility="visible">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical">
+            <!-- Step 1 Layout -->
+            <LinearLayout
+                android:id="@+id/layout_config_study"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:visibility="visible">
 
-            <NumberPicker
-                android:id="@+id/picker_study_hours"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_time_hours" android:layout_marginStart="4dp" android:layout_marginEnd="16dp"/>
-
-            <NumberPicker
-                android:id="@+id/picker_study_minutes"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_time_minutes" android:layout_marginStart="4dp" android:layout_marginEnd="16dp"/>
-
-            <NumberPicker
-                android:id="@+id/picker_study_seconds"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_time_seconds" android:layout_marginStart="4dp"/>
+                <!-- Study Timer elements... -->
+                <TextView style="@style/TextAppearance.MaterialComponents.Headline6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_study_timer" android:layout_marginTop="24dp" android:layout_marginBottom="24dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_duration" android:layout_gravity="center_horizontal" android:layout_marginBottom="4dp"/>
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="24dp" android:layout_gravity="center_horizontal" android:gravity="center_vertical">
+                    <NumberPicker android:id="@+id/picker_study_hours" android:layout_width="wrap_content" android:layout_height="120dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_time_hours" android:layout_marginStart="4dp" android:layout_marginEnd="16dp"/>
+                    <NumberPicker android:id="@+id/picker_study_minutes" android:layout_width="wrap_content" android:layout_height="120dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_time_minutes" android:layout_marginStart="4dp" android:layout_marginEnd="16dp"/>
+                    <NumberPicker android:id="@+id/picker_study_seconds" android:layout_width="wrap_content" android:layout_height="120dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_time_seconds" android:layout_marginStart="4dp"/>
+                </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:id="@+id/layout_study_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="32dp" android:layout_marginEnd="32dp" android:hint="@string/config_study_label" android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/edit_text_study_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textCapSentences" android:text="@string/default_study_label"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Removed Spacer View -->
+            <Button android:id="@+id/button_study_next" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/button_next" android:layout_gravity="bottom" android:layout_marginStart="32dp" android:layout_marginEnd="32dp" android:layout_marginBottom="16dp"/>
         </LinearLayout>
 
-            <!-- *** Adjust width and center this *** -->
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:id="@+id/layout_study_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:hint="@string/config_study_label"
-                android:layout_marginBottom="16dp">
-
-                <!-- android:layout_gravity="center_horizontal"  Optional: if parent gravity isn't enough -->
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_study_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapSentences"
-                    android:text="@string/default_study_label"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/button_study_next"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/button_next"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="16dp"/>
-            </LinearLayout>
-
-        <!-- Step 2: Break Timer Configuration -->
-        <LinearLayout
-            android:id="@+id/layout_config_break"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:visibility="gone">
-
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Headline6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/config_break_timer"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/config_duration"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="4dp"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="24dp"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_vertical">
-
-                <NumberPicker
-                    android:id="@+id/picker_break_hours"
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"/>
+        <!-- Step 2 Layout -->
+        <LinearLayout android:id="@+id/layout_config_break" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal" android:visibility="gone">
+            <TextView style="@style/TextAppearance.MaterialComponents.Headline6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_break_timer" android:layout_marginTop="24dp" android:layout_marginBottom="24dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_duration" android:layout_gravity="center_horizontal" android:layout_marginBottom="4dp"/>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="24dp" android:layout_gravity="center_horizontal" android:gravity="center_vertical">
+                <NumberPicker android:id="@+id/picker_break_hours" android:layout_width="wrap_content" android:layout_height="120dp"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_time_hours" android:layout_marginStart="4dp" android:layout_marginEnd="16dp"/>
-
-                <NumberPicker
-                    android:id="@+id/picker_break_minutes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"/>
+                <NumberPicker android:id="@+id/picker_break_minutes" android:layout_width="wrap_content" android:layout_height="120dp"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_time_minutes" android:layout_marginStart="4dp" android:layout_marginEnd="16dp"/>
-
-                <NumberPicker
-                    android:id="@+id/picker_break_seconds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"/>
+                <NumberPicker android:id="@+id/picker_break_seconds" android:layout_width="wrap_content" android:layout_height="120dp"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_time_seconds" android:layout_marginStart="4dp"/>
             </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="32dp" android:layout_marginEnd="32dp" android:hint="@string/config_break_label" android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/edit_text_break_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textCapSentences" android:text="@string/default_break_label"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Removed Spacer View -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_gravity="bottom" android:layout_marginStart="32dp" android:layout_marginEnd="32dp" android:layout_marginBottom="16dp">
+                <Button android:id="@+id/button_break_back" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/button_back" android:layout_marginEnd="8dp"/>
+                <Button android:id="@+id/button_break_next" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/button_next" android:layout_marginStart="8dp"/>
+            </LinearLayout>
+        </LinearLayout>
 
-            <!-- *** Adjust width and center this *** -->
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <!-- Step 3 Layout -->
+                <LinearLayout android:id="@+id/layout_config_cycles" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal" android:visibility="gone">
+                    <TextView style="@style/TextAppearance.MaterialComponents.Headline6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_cycles" android:layout_marginTop="24dp" android:layout_marginBottom="24dp"/>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp" android:layout_gravity="center_horizontal" android:gravity="center_vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_number_of_cycles" android:layout_marginEnd="16dp"/>
+                        <NumberPicker android:id="@+id/picker_cycles" android:layout_width="wrap_content" android:layout_height="120dp"/>
+                    </LinearLayout>
+                    <!-- Removed Spacer View -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_gravity="bottom" android:layout_marginStart="32dp" android:layout_marginEnd="32dp" android:layout_marginBottom="16dp">
+                        <Button android:id="@+id/button_cycles_back" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/button_back" android:layout_marginEnd="8dp"/>
+                        <Button android:id="@+id/button_cycles_done_start" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/button_done_start" android:layout_marginStart="8dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </FrameLayout> <!-- End Configuration Steps Container -->
+
+            <!-- === Timer Display Group === -->
+            <LinearLayout
+                android:id="@+id/layout_timer_display"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:hint="@string/config_break_label"
-                android:layout_marginBottom="16dp">
-                <!-- android:layout_gravity="center_horizontal" Optional: if parent gravity isn't enough -->
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp"
+                android:visibility="gone">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_break_label"
+                <!-- Timer Views... -->
+                <TextView android:id="@+id/text_view_phase_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="24sp" android:layout_marginBottom="8dp" tools:text="Study Time"/>
+                <TextView android:id="@+id/text_view_cycle_count" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="16sp" android:layout_marginBottom="32dp" tools:text="Cycle 1 of 4"/>
+                <TextView android:id="@+id/text_view_countdown" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="72sp" android:textStyle="bold" android:layout_marginBottom="32dp" tools:text="24:59" />
+                <Button android:id="@+id/button_stop_timer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/button_stop"/>
+            </LinearLayout>
+
+            </FrameLayout> <!-- End Pomodoro Content Area -->
+
+            <View
+                android:id="@+id/divider_pomodoro_tasks"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" /> <!-- Hidden unless a date is selected -->
+
+            <!-- Task Display Area for Selected Date -->
+            <LinearLayout
+                android:id="@+id/layout_selected_date_tasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/text_view_selected_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:layout_marginBottom="8dp"
+                    tools:text="Tasks for Apr 21"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_selected_date_tasks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapSentences"
-                    android:text="@string/default_break_label"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:nestedScrollingEnabled="false"/> <!-- Important for RecyclerView inside ScrollView -->
 
-            <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/> <!-- Spacer -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="16dp">
-                <Button
-                    android:id="@+id/button_break_back"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="0dp"
+
+                <TextView
+                    android:id="@+id/text_view_no_tasks_for_date"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/button_back"
-                    android:layout_marginEnd="8dp"/>
-                <Button
-                    android:id="@+id/button_break_next"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/button_next"
-                    android:layout_marginStart="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
+                    android:text="No tasks created on this date."
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:visibility="gone"/>
 
-        <!-- Step 3: Cycles Configuration -->
-        <LinearLayout
-        android:id="@+id/layout_config_cycles"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:visibility="gone">
+            </LinearLayout> <!-- End Selected Date Task Display -->
 
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Headline6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/config_cycles"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"/>
+        </LinearLayout> <!-- End LinearLayout inside ScrollView -->
 
-            <!-- *** Center this LinearLayout *** -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/config_number_of_cycles"
-                android:layout_marginEnd="16dp"/>
+    </ScrollView> <!-- End ScrollView below Calendar -->
 
-                <NumberPicker
-                    android:id="@+id/picker_cycles"
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"/>
-            </LinearLayout>
-
-            <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/> <!-- Spacer -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:id="@+id/button_cycles_back"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/button_back"
-                    android:layout_marginEnd="8dp"/>
-                <Button
-                    android:id="@+id/button_cycles_done_start"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/button_done_start"
-                    android:layout_marginStart="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-    </FrameLayout> <!-- End of Configuration Steps Container -->
-
-    <!-- === Timer Display Group (Remains the same) === -->
-    <LinearLayout
-        android:id="@+id/layout_timer_display"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"
-        tools:visibility="gone">
-
-        <TextView
-            android:id="@+id/text_view_phase_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_marginBottom="8dp"
-            tools:text="Study Time"/>
-
-        <TextView
-            android:id="@+id/text_view_cycle_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginBottom="32dp"
-            tools:text="Cycle 1 of 4"/>
-
-        <TextView
-            android:id="@+id/text_view_countdown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="72sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="32dp"
-            tools:text="24:59" />
-
-        <Button
-            android:id="@+id/button_stop_timer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_stop"/>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
